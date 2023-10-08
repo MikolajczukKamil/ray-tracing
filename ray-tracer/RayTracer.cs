@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ray_tracer
 {
-    public class Class1
+    public class RayTracer
     {
     }
 }
