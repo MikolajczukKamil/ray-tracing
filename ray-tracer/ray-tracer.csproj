@@ -41,9 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="common\Color.cs" />
+    <Compile Include="common\Light.cs" />
+    <Compile Include="elements\surfaces\Checkerboard.cs" />
+    <Compile Include="elements\surfaces\Shiny.cs" />
+    <Compile Include="elements\things\Plane.cs" />
+    <Compile Include="elements\things\Sphere.cs" />
+    <Compile Include="scene\Camera.cs" />
+    <Compile Include="scene\Scene.cs" />
+    <Compile Include="scene\Intersection.cs" />
+    <Compile Include="scene\Ray.cs" />
     <Compile Include="RayTracer.cs" />
     <Compile Include="common\Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scene\Surface.cs" />
+    <Compile Include="scene\Thing.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

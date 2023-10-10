@@ -2,7 +2,7 @@
 
 namespace ray_tracer.common
 {
-    class Vector
+    public class Vector
     {
         public readonly double x;
 
