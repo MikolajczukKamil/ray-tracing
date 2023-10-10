@@ -2,7 +2,7 @@
 using ray_tracer.scene;
 
 using System;
-//using System.Drawing;
+using System.Drawing;
 
 namespace ray_tracer
 {
@@ -109,11 +109,6 @@ namespace ray_tracer
 
         public void render()
         {
-            Brush aBrush = (Brush)Brushes.Black;
-            Graphics g = this.CreateGraphics();
-
-            g.FillRectangle(aBrush, x, y, 1, 1);
-
             for (var y = 0; y < screenHeight; y++)
             {
                 for (var x = 0; x < screenWidth; x++)

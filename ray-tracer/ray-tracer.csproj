@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="common\Color.cs" />
+    <Compile Include="common\RColor.cs" />
     <Compile Include="common\Light.cs" />
     <Compile Include="elements\surfaces\Checkerboard.cs" />
     <Compile Include="elements\surfaces\Shiny.cs" />
