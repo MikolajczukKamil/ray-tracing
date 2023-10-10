@@ -3,9 +3,9 @@
     public class Light
     {
         public readonly Vector pos;
-        public readonly Color color;
+        public readonly RColor color;
 
-        public Light(Vector pos, Color color)
+        public Light(Vector pos, RColor color)
         {
             this.pos = pos;
             this.color = color;

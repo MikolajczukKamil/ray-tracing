@@ -9,14 +9,14 @@ namespace ray_tracer.elements.surfaces
     {
         public double roughness => 150.0;
 
-        public Color diffuse(Vector pos)
+        public RColor diffuse(Vector pos)
         {
             if (isBlackField(pos))
             {
-                return Color.white;
+                return RColor.white;
             }
 
-            return Color.black;
+            return RColor.black;
         }
 
         public double reflect(Vector pos)
@@ -29,9 +29,9 @@ namespace ray_tracer.elements.surfaces
             return 0.7;
         }
 
-        public Color specular(Vector pos)
+        public RColor specular(Vector pos)
         {
-            return Color.white;
+            return RColor.white;
         }
 
         private bool isBlackField(Vector pos)

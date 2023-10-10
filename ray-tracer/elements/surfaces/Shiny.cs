@@ -9,9 +9,9 @@ namespace ray_tracer.elements.surfaces
     {
         public double roughness => 250.0;
 
-        public Color diffuse(Vector pos)
+        public RColor diffuse(Vector pos)
         {
-            return Color.white;
+            return RColor.white;
         }
 
         public double reflect(Vector pos)
@@ -19,9 +19,9 @@ namespace ray_tracer.elements.surfaces
             return 0.7;
         }
 
-        public Color specular(Vector pos)
+        public RColor specular(Vector pos)
         {
-            return Color.grey;
+            return RColor.grey;
         }
     }
 }

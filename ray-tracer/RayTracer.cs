@@ -2,13 +2,14 @@
 using ray_tracer.scene;
 
 using System;
+//using System.Drawing;
 
 namespace ray_tracer
 {
     public class RayTracer
     {
-        private readonly Color background = Color.black;
-        private readonly Color defaultColor = Color.black;
+        private readonly RColor background = RColor.black;
+        private readonly RColor defaultColor = RColor.black;
 
         private readonly Scene scene;
         private readonly int maxDepth;
@@ -49,7 +50,7 @@ namespace ray_tracer
             return closest == null ? double.NaN : closest.dist;
         }
 
-        private Color traceRay(Ray ray, Scene scene, int depth)
+        private RColor traceRay(Ray ray, Scene scene, int depth)
         {
             var closest = closestIntersection(ray, scene);
 
@@ -61,24 +62,24 @@ namespace ray_tracer
             return shade(closest, scene, depth);
         }
 
-        private Color shade(Intersection isect, Scene scene, int depth)
+        private RColor shade(Intersection isect, Scene scene, int depth)
         {
             var d = isect.ray.dir;
             var pos = d.times(isect.dist).plus(isect.ray.start);
             var normal = isect.thing.normal(pos);
             var reflectDir = d.minus(normal.times(normal.dot(d) * 2));
             var naturalColor = background.plus(getNaturalColor(isect.thing, pos, normal, reflectDir, scene));
-            var reflectedColor = (depth >= maxDepth) ? Color.grey : getReflectionColor(isect.thing, pos, normal, reflectDir, scene, depth);
+            var reflectedColor = (depth >= maxDepth) ? RColor.grey : getReflectionColor(isect.thing, pos, normal, reflectDir, scene, depth);
 
             return naturalColor.plus(reflectedColor);
         }
 
-        private Color getReflectionColor(Thing thing, Vector pos, Vector normal, Vector rd, Scene scene, int depth)
+        private RColor getReflectionColor(Thing thing, Vector pos, Vector normal, Vector rd, Scene scene, int depth)
         {
             return traceRay(new Ray(pos, rd), scene, depth + 1).scale(thing.surface.reflect(pos));
         }
 
-        private Color getNaturalColor(Thing thing, Vector pos, Vector norm, Vector rd, Scene scene)
+        private RColor getNaturalColor(Thing thing, Vector pos, Vector norm, Vector rd, Scene scene)
         {
             var color = defaultColor;
             var thingDiffuse = thing.surface.diffuse(pos);
@@ -108,6 +109,11 @@ namespace ray_tracer
 
         public void render()
         {
+            Brush aBrush = (Brush)Brushes.Black;
+            Graphics g = this.CreateGraphics();
+
+            g.FillRectangle(aBrush, x, y, 1, 1);
+
             for (var y = 0; y < screenHeight; y++)
             {
                 for (var x = 0; x < screenWidth; x++)

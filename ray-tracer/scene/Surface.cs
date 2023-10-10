@@ -7,9 +7,9 @@ namespace ray_tracer.scene
     {
         double roughness { get; }
 
-        Color diffuse(Vector pos);
+        RColor diffuse(Vector pos);
 
-        Color specular(Vector pos);
+        RColor specular(Vector pos);
 
         double reflect(Vector pos);
     }
