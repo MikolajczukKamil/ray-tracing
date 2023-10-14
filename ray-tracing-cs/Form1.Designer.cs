@@ -40,13 +40,13 @@ namespace ray_tracing_cs
             this.renderedImage.Dock = System.Windows.Forms.DockStyle.Left;
             this.renderedImage.Location = new System.Drawing.Point(0, 0);
             this.renderedImage.Name = "renderedImage";
-            this.renderedImage.Size = new System.Drawing.Size(950, 611);
+            this.renderedImage.Size = new System.Drawing.Size(256, 256);
             this.renderedImage.TabIndex = 0;
             this.renderedImage.TabStop = false;
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(956, 553);
+            this.startButton.Location = new System.Drawing.Point(277, 210);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(216, 46);
             this.startButton.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace ray_tracing_cs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.ClientSize = new System.Drawing.Size(1184, 256);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.renderedImage);
             this.Name = "Form1";

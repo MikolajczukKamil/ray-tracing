@@ -110,20 +110,20 @@ namespace ray_tracer
         public Bitmap render()
         {
             var image = new Bitmap(screenWidth, screenHeight);
+            var camera = scene.camera;
 
             for (var y = 0; y < screenHeight; y++)
             {
                 for (var x = 0; x < screenWidth; x++)
                 {
-                    var recenterX = (x - (screenWidth / 2.0)) / 2.0 / screenWidth;
-                    var recenterY = -(y - (screenHeight / 2.0)) / 2.0 / screenHeight;
+                    double recenterX = (x - (screenWidth / 2.0)) / 2.0 / screenWidth;
+                    double recenterY = (y - (screenHeight / 2.0)) / 2.0 / screenHeight;
 
-                    var point = scene.camera.forward.plus(
-                        scene.camera.right
-                            .times(recenterX)
-                            .plus(scene.camera.up.times(recenterY))
-                        ).norm();
-                    var ray = new Ray(scene.camera.position, point);
+                    var point = camera.forward
+                        .plus(camera.right.times(recenterX))
+                        .plus(camera.up.times(-recenterY))
+                        .norm();
+                    var ray = new Ray(camera.position, point);
                     var color = traceRay(ray, scene, 0);
 
                     image.SetPixel(x, y, color.toDrawingColor());

@@ -43,7 +43,7 @@ namespace ray_tracing_cs
             };
 
             var red = new RColor(0.49, 0.07, 0.07);
-            var green = new RColor(0.7, 0.49, 0.07);
+            var green = new RColor(0.7, 0.49, 0.071);
             var blue = new RColor(0.7, 0.07, 0.49);
 
             Light[] lights =
