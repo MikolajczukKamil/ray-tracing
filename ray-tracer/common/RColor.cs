@@ -22,7 +22,14 @@ namespace ray_tracer.common
 
         private double norm(double x)
         {
-            return Math.Max(0, Math.Min(1, x));
+            var x2 = Math.Max(0, Math.Min(1, x));
+
+            if (x != x2)
+            {
+                throw new Exception("Diff " + x + " : " + x2);
+            }
+
+            return x; // Math.Max(0, Math.Min(1, x));
         }
 
         public RColor scale(double k)
