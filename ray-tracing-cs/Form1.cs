@@ -23,13 +23,11 @@ namespace ray_tracing_cs
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void start(object sender, EventArgs e)
         { 
-            var rayTracer = new RayTracer(getScene(), 1920, 1080);
+            var rayTracer = new RayTracer(getScene(), renderedImage.Width, renderedImage.Height);
 
-            rayTracer.render();
-            label1.Text = "End";
-            Console.WriteLine("End");
+            renderedImage.BackgroundImage = rayTracer.render();
         }
 
         Scene getScene()

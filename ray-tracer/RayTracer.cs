@@ -107,8 +107,10 @@ namespace ray_tracer
             return color;
         }
 
-        public void render()
+        public Bitmap render()
         {
+            var image = new Bitmap(screenWidth, screenHeight);
+
             for (var y = 0; y < screenHeight; y++)
             {
                 for (var x = 0; x < screenWidth; x++)
@@ -121,13 +123,14 @@ namespace ray_tracer
                             .times(recenterX)
                             .plus(scene.camera.up.times(recenterY))
                         ).norm();
+                    var ray = new Ray(scene.camera.position, point);
+                    var color = traceRay(ray, scene, 0);
 
-                    var color = traceRay(new Ray(scene.camera.position, point), scene, 0);
-                    //var c = color.toDrawingColor();
-                    //ctx.fillStyle = "rgb(" + String(c.r) + ", " + String(c.g) + ", " + String(c.b) + ")";
-                    //ctx.fillRect(x, y, x + 1, y + 1);
+                    image.SetPixel(x, y, color.toDrawingColor());
                 }
             }
+
+            return image;
         }
     }
 }

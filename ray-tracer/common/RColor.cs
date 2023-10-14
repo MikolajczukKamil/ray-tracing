@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace ray_tracer.common
 {
@@ -39,9 +40,9 @@ namespace ray_tracer.common
             return new RColor(r * other.r, g * other.g, b * other.b);
         }
 
-        public RColor toDrawingColor()
+        public Color toDrawingColor()
         {
-            throw new Exception("toDrawingColor");
+            return Color.FromArgb((int) Math.Round(r * 255), (int)Math.Round(g * 255), (int)Math.Round(b * 255));
         }
     }
 }
