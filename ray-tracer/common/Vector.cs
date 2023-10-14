@@ -37,14 +37,9 @@ namespace ray_tracer.common
             return x * other.x + y * other.y + z * other.z;
         }
 
-        public double mag2()
-        {
-            return x * x + y * y + z * z;
-        }
-
         public double mag()
         {
-            return Math.Sqrt(mag2());
+            return Math.Sqrt(x * x + y * y + z * z);
         }
 
         public Vector norm()

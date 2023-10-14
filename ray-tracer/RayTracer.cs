@@ -13,8 +13,8 @@ namespace ray_tracer
 
         private readonly Scene scene;
         private readonly int maxDepth;
-        private readonly int screenWidth;
-        private readonly int screenHeight;
+        private int screenWidth;
+        private int screenHeight;
 
         public RayTracer(Scene scene, int screenWidth, int screenHeight, int maxDepth = 5)
         {
@@ -67,9 +67,17 @@ namespace ray_tracer
             var d = isect.ray.dir;
             var pos = d.times(isect.dist).plus(isect.ray.start);
             var normal = isect.thing.normal(pos);
-            var reflectDir = d.minus(normal.times(normal.dot(d) * 2));
-            var naturalColor = background.plus(getNaturalColor(isect.thing, pos, normal, reflectDir, scene));
-            var reflectedColor = (depth >= maxDepth) ? RColor.grey : getReflectionColor(isect.thing, pos, normal, reflectDir, scene, depth);
+            var reflectDir = d.minus(
+                normal
+                .times(normal.dot(d))
+                .times(2)
+             );
+            var naturalColor = background.plus(
+                getNaturalColor(isect.thing, pos, normal, reflectDir, scene)
+             );
+            var reflectedColor = (depth >= maxDepth) ?
+                RColor.grey : 
+                getReflectionColor(isect.thing, pos, normal, reflectDir, scene, depth);
 
             return naturalColor.plus(reflectedColor);
         }
@@ -87,7 +95,7 @@ namespace ray_tracer
 
             foreach (var light in scene.lights)
             {
-                var ldis = pos.minus(light.pos);
+                var ldis = light.pos.minus(pos);
                 var livec = ldis.norm();
                 var neatIsect = testRay(new Ray(pos, livec), scene);
                 var isInShadow = double.IsNaN(neatIsect) ? false : (neatIsect <= ldis.mag());
@@ -112,9 +120,9 @@ namespace ray_tracer
             var image = new Bitmap(screenWidth, screenHeight);
             var camera = scene.camera;
 
-            for (var y = 0; y < screenHeight; y++)
+            for (var y = 0; y < screenWidth; y++)
             {
-                for (var x = 0; x < screenWidth; x++)
+                for (var x = 0; x < screenHeight; x++)
                 {
                     double recenterX = (x - (screenWidth / 2.0)) / 2.0 / screenWidth;
                     double recenterY = (y - (screenHeight / 2.0)) / 2.0 / screenHeight;

@@ -15,21 +15,14 @@ namespace ray_tracer.common
 
         public RColor(double r, double g, double b)
         {
-            this.r = norm(r);
-            this.g = norm(g);
-            this.b = norm(b);
+            this.r = r;
+            this.g = g;
+            this.b = b;
         }
 
-        private double norm(double x)
+        private double norm(double x, double max = 1)
         {
-            var x2 = Math.Max(0, Math.Min(1, x));
-
-            if (x != x2)
-            {
-                throw new Exception("Diff " + x + " : " + x2);
-            }
-
-            return x; // Math.Max(0, Math.Min(1, x));
+            return Math.Max(0, Math.Min(max, x));
         }
 
         public RColor scale(double k)
@@ -49,7 +42,11 @@ namespace ray_tracer.common
 
         public Color toDrawingColor()
         {
-            return Color.FromArgb((int) Math.Round(r * 255), (int)Math.Round(g * 255), (int)Math.Round(b * 255));
+            return Color.FromArgb(
+                (int)Math.Round(norm(r) * 255),
+                (int)Math.Round(norm(g) * 255),
+                (int)Math.Round(norm(b) * 255)
+                );
         }
     }
 }

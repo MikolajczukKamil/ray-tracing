@@ -45,6 +45,7 @@
     <Compile Include="common\RColor.cs" />
     <Compile Include="common\Light.cs" />
     <Compile Include="elements\surfaces\Checkerboard.cs" />
+    <Compile Include="elements\surfaces\Matt.cs" />
     <Compile Include="elements\surfaces\Shiny.cs" />
     <Compile Include="elements\things\Plane.cs" />
     <Compile Include="elements\things\Sphere.cs" />

@@ -39,7 +39,7 @@ namespace ray_tracing_cs
             Thing[] things = {
                 new Plane(new Vector(0.0, 1.0, 0.0), 0.0, new Checkerboard()),
                 new Sphere(new Vector(0.0, 1.0, -0.25), 1.0, new Shiny()),
-                new Sphere(new Vector(-1.0, 0.5, 1.5), 0.5, new Shiny())
+                new Sphere(new Vector(-1.0, 0.5, 1.5), 0.5, new Matt())
             };
 
             var red = new RColor(0.49, 0.07, 0.07);
