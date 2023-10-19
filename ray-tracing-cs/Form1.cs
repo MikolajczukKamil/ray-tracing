@@ -18,6 +18,7 @@ namespace ray_tracing_cs
         public Form1()
         {
             InitializeComponent();
+            start(null, null);
         }
 
         private void start(object sender, EventArgs e)
@@ -37,21 +38,22 @@ namespace ray_tracing_cs
         Scene getScene()
         {
             Thing[] things = {
-                new Plane(new Vector(0.0, 1.0, 0.0), 0.0, new Checkerboard()),
-                new Sphere(new Vector(0.0, 1.0, -0.25), 1.0, new Shiny()),
-                new Sphere(new Vector(-1.0, 0.5, 1.5), 0.5, new Matt())
+                new Plane (new Vector( 0.0, 1.0,  0.00), 0.0, new Checkerboard()),
+                new Sphere(new Vector( 0.0, 1.0, -0.25), 1.0, new Shiny()),
+                new Sphere(new Vector(-1.0, 0.5,  1.50), 0.5, new Matt())
             };
 
-            var red = new RColor(0.49, 0.07, 0.07);
-            var green = new RColor(0.7, 0.49, 0.071);
-            var blue = new RColor(0.7, 0.07, 0.49);
-
+            var red   = RColor.from(125,  18,  18);
+            var green = RColor.from( 18, 125,  18);
+            var blue  = RColor.from( 18,  18, 125);
+            var blue2 = RColor.from( 54,  54,  89);
+          
             Light[] lights =
             {
-                new Light(new Vector(-2.0, 2.5, 0.0), red),
-                new Light(new Vector(1.5, 2.5, 1.5), blue),
-                new Light(new Vector(1.5, 2.5, -1.5), green),
-                new Light(new Vector(0.0, 3.5, 0.0), new RColor(0.21, 0.21, 0.35))
+                new Light(new Vector(-2.0, 2.5,  0.0), red),
+                new Light(new Vector( 1.5, 2.5,  1.5), blue),
+                new Light(new Vector( 1.5, 2.5, -1.5), green),
+                new Light(new Vector( 0.0, 3.5,  0.0), blue2)
             };
 
             var camera = new Camera(new Vector(3.0, 2.0, 4.0), new Vector(-1.0, 0.5, 0.0));

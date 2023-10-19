@@ -6,7 +6,7 @@ namespace ray_tracer.common
     public class RColor
     {
         public static readonly RColor white = new RColor(1.0, 1.0, 1.0);
-        public static readonly RColor grey = new RColor(0.5, 0.5, 0.5);
+        public static readonly RColor grey  = new RColor(0.5, 0.5, 0.5);
         public static readonly RColor black = new RColor(0.0, 0.0, 0.0);
 
         public readonly double r;
@@ -20,7 +20,7 @@ namespace ray_tracer.common
             this.b = b;
         }
 
-        private double norm(double x, double max = 1)
+        private static double norm(double x, double max = 1)
         {
             return Math.Max(0, Math.Min(max, x));
         }
@@ -43,10 +43,15 @@ namespace ray_tracer.common
         public Color toDrawingColor()
         {
             return Color.FromArgb(
-                (int)Math.Round(norm(r) * 255),
-                (int)Math.Round(norm(g) * 255),
-                (int)Math.Round(norm(b) * 255)
+                (int)Math.Round(norm(r) * 255.0),
+                (int)Math.Round(norm(g) * 255.0),
+                (int)Math.Round(norm(b) * 255.0)
                 );
+        }
+
+        public static RColor from(int r, int g, int b)
+        {
+            return new RColor(norm(r / 255.0), norm(g / 255.0), norm(b / 255.0));
         }
     }
 }
