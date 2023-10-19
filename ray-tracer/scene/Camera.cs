@@ -20,8 +20,8 @@ namespace ray_tracer.scene
             this.lookAt = lookAt;
 
             forward = lookAt.minus(position).norm();
-            right = forward.cross(down).norm().times(1.5);
-            up = forward.cross(right).norm().times(1.5);
+            right = forward.cross(down).norm();
+            up = forward.cross(right).norm();
         }
     }
 }

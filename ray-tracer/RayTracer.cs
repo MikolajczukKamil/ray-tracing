@@ -15,13 +15,21 @@ namespace ray_tracer
         private readonly int maxDepth;
         private int screenWidth;
         private int screenHeight;
+        private double zoom;
 
-        public RayTracer(Scene scene, int screenWidth, int screenHeight, int maxDepth = 5)
+        public RayTracer(
+            Scene scene,
+            int screenWidth,
+            int screenHeight,
+            double zoom = 1.5,
+            int maxDepth = 10
+          )
         {
             this.scene = scene;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             this.maxDepth = maxDepth;
+            this.zoom = zoom;
         }
 
         private Intersection closestIntersection(Ray ray, Scene scene)
@@ -120,17 +128,21 @@ namespace ray_tracer
             var image = new Bitmap(screenWidth, screenHeight);
             var camera = scene.camera;
 
-            for (var y = 0; y < screenWidth; y++)
-            {
-                for (var x = 0; x < screenHeight; x++)
-                {
-                    double recenterX = (x - (screenWidth / 2.0)) / 2.0 / screenWidth;
-                    double recenterY = (y - (screenHeight / 2.0)) / 2.0 / screenHeight;
+            var up = camera.up.times(zoom);
+            var right = camera.right.times(zoom);
 
-                    var point = camera.forward
-                        .plus(camera.right.times(recenterX))
-                        .plus(camera.up.times(-recenterY))
-                        .norm();
+            var minAxis = Math.Min(screenHeight, screenWidth);
+
+            for (var y = 0; y < screenHeight; y++)
+            {
+                double recenterY = (y - (minAxis / 2.0)) / 2.0 / minAxis;
+                var pointY = camera.forward.plus(up.times(-recenterY));
+
+                for (var x = 0; x < screenWidth; x++)
+                {
+                    double recenterX = (x - (minAxis / 2.0)) / 2.0 / minAxis;
+
+                    var point = pointY.plus(right.times(recenterX)).norm();
                     var ray = new Ray(camera.position, point);
                     var color = traceRay(ray, scene, 0);
 

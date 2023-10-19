@@ -56,7 +56,7 @@ namespace ray_tracing_cs
                 new Light(new Vector( 0.0, 3.5,  0.0), blue2)
             };
 
-            var camera = new Camera(new Vector(3.0, 2.0, 4.0), new Vector(-1.0, 0.5, 0.0));
+            var camera = new Camera(new Vector(3.0, 2.0, 5.0), new Vector(-1.0, 0.5, 0.0));
 
             return new Scene(things, lights, camera);
         }
