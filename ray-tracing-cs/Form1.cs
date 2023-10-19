@@ -28,7 +28,7 @@ namespace ray_tracing_cs
 
             renderedImage.Image = new Bitmap(renderedImage.Width, renderedImage.Height);
 
-            var rayTracer = new RayTracer(getScene(), renderedImage.Width, renderedImage.Height);
+            var rayTracer = new RayTracer(getScene(), renderedImage.Width, renderedImage.Height, 1.5);
 
             renderedImage.Image = rayTracer.render();
 

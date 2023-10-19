@@ -21,7 +21,7 @@ namespace ray_tracer
             Scene scene,
             int screenWidth,
             int screenHeight,
-            double zoom = 1.5,
+            double zoom,
             int maxDepth = 10
           )
         {
