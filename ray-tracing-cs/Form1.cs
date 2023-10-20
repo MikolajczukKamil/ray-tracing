@@ -54,7 +54,7 @@ namespace ray_tracing_cs
                         Invoke(new Action(delegate ()
                         {
                             showFragment(image, fragment, fragmentIndex, threads);
-                            renderedImage.Image = image;
+                            renderedImage.Refresh();
                         }));
                     })
                 )).Wait();
@@ -109,7 +109,6 @@ namespace ray_tracing_cs
             }));
 
             double zoom = zoomSelected != null && zoomSelected.Length > 0 ? Double.Parse(zoomSelected) : 1.0;
-
 
             var camera = new Camera(new Vector(3.0, 2.0, 5.0), new Vector(-1.0, 0.5, 0.0), zoom);
 

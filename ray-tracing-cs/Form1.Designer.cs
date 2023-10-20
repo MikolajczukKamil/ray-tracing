@@ -47,6 +47,7 @@ namespace ray_tracing_cs
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
+            this.hugeBallControl = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.renderedImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,7 +82,7 @@ namespace ray_tracing_cs
             "2",
             "5",
             "10"});
-            this.zoomControll.Location = new System.Drawing.Point(1520, 128);
+            this.zoomControll.Location = new System.Drawing.Point(1521, 96);
             this.zoomControll.Name = "zoomControll";
             this.zoomControll.Size = new System.Drawing.Size(255, 23);
             this.zoomControll.TabIndex = 2;
@@ -90,7 +91,7 @@ this.zoomControll.SelectedItem = "1,5";
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1520, 110);
+            this.label1.Location = new System.Drawing.Point(1521, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 15);
             this.label1.TabIndex = 3;
@@ -136,7 +137,7 @@ this.thredsControl.SelectedItem = "8";
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(1520, 162);
+            this.label4.Location = new System.Drawing.Point(1521, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 15);
             this.label4.TabIndex = 8;
@@ -255,11 +256,24 @@ this.thredsControl.SelectedItem = "8";
             this.timeLabel.TabIndex = 18;
             this.timeLabel.Text = "  ---  ";
             // 
+            // hugeBallControl
+            // 
+            this.hugeBallControl.AutoSize = true;
+            this.hugeBallControl.Checked = true;
+            this.hugeBallControl.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hugeBallControl.Location = new System.Drawing.Point(1521, 155);
+            this.hugeBallControl.Name = "hugeBallControl";
+            this.hugeBallControl.Size = new System.Drawing.Size(86, 19);
+            this.hugeBallControl.TabIndex = 19;
+            this.hugeBallControl.Text = "Wielka kula";
+            this.hugeBallControl.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1784, 961);
+            this.Controls.Add(this.hugeBallControl);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -306,6 +320,7 @@ this.thredsControl.SelectedItem = "8";
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.CheckBox hugeBallControl;
     }
 }
 
