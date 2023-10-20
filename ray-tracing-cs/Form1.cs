@@ -10,6 +10,7 @@ using ray_tracer.elements.things;
 using ray_tracer.elements.surfaces;
 using System.Linq;
 using System.Diagnostics;
+using System.Threading;
 
 namespace ray_tracing_cs
 {
@@ -33,10 +34,19 @@ namespace ray_tracing_cs
 
             renderedImage.Image = new Bitmap(renderedImage.Width, renderedImage.Height);
 
-            var rayTracer = new RayTracer(getScene(), renderedImage.Width, renderedImage.Height);
+            var threads = getThreads();
 
-            renderedImage.Image = rayTracer.render();
+            var scene = getScene();
 
+            var t = new Thread(() =>
+            {
+                var rayTracer = new RayTracer(scene, renderedImage.Width, renderedImage.Height);
+
+                renderedImage.Image = rayTracer.render();
+            });
+            
+            t.Start();
+            t.Join();
             stopwatch.Stop();
             timeLabel.Text = (stopwatch.ElapsedMilliseconds / 1000.0).ToString();
             started = false;
