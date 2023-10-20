@@ -58,6 +58,39 @@ namespace ray_tracer
             return shade(closest, scene, depth);
         }
 
+        public Bitmap fragmentRender(int screenWidth, int screenHeight, int fragmentIndex, int threads)
+        {
+            var image = new Bitmap(screenWidth, fragmentIndex == threads - 1 ? screenHeight - fragmentIndex * (screenHeight / threads) : screenHeight / threads);
+
+            var camera = scene.camera;
+
+            var up = camera.up.times(camera.zoom);
+            var right = camera.right.times(camera.zoom);
+
+            var minAxis = Math.Min(screenWidth, screenHeight);
+
+            var start = fragmentIndex * (screenHeight / threads);
+
+            for (var y = 0; y < image.Height; y++)
+            {
+                double recenterY = ((start + y) - (minAxis / 2.0)) / 2.0 / minAxis;
+                var pointY = camera.forward.plus(up.times(-recenterY));
+
+                for (var x = 0; x < screenWidth; x++)
+                {
+                    double recenterX = (x - (minAxis / 2.0)) / 2.0 / minAxis;
+
+                    var point = pointY.plus(right.times(recenterX)).norm();
+                    var ray = new Ray(camera.position, point);
+                    var color = traceRay(ray, scene, 0);
+
+                    image.SetPixel(x, y, color.toDrawingColor());
+                }
+            }
+
+            return image;
+        }
+
         private RColor shade(Intersection isect, Scene scene, int depth)
         {
             var d = isect.ray.dir;
@@ -118,7 +151,7 @@ namespace ray_tracer
             var up = camera.up.times(camera.zoom);
             var right = camera.right.times(camera.zoom);
 
-            var minAxis = Math.Min(screenHeight, screenWidth);
+            var minAxis = Math.Min(screenWidth, screenHeight);
 
             for (var y = 0; y < screenHeight; y++)
             {

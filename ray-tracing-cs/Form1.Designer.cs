@@ -56,13 +56,13 @@ namespace ray_tracing_cs
             this.renderedImage.Dock = System.Windows.Forms.DockStyle.Left;
             this.renderedImage.Location = new System.Drawing.Point(0, 0);
             this.renderedImage.Name = "renderedImage";
-            this.renderedImage.Size = new System.Drawing.Size(850, 761);
+            this.renderedImage.Size = new System.Drawing.Size(1511, 961);
             this.renderedImage.TabIndex = 0;
             this.renderedImage.TabStop = false;
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(853, 413);
+            this.startButton.Location = new System.Drawing.Point(1517, 409);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(255, 46);
             this.startButton.TabIndex = 1;
@@ -81,16 +81,16 @@ namespace ray_tracing_cs
             "2",
             "5",
             "10"});
-            this.zoomControll.Location = new System.Drawing.Point(856, 132);
+            this.zoomControll.Location = new System.Drawing.Point(1520, 128);
             this.zoomControll.Name = "zoomControll";
             this.zoomControll.Size = new System.Drawing.Size(255, 23);
             this.zoomControll.TabIndex = 2;
-            this.zoomControll.SelectedItem = "1,5";
+this.zoomControll.SelectedItem = "1,5";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(856, 114);
+            this.label1.Location = new System.Drawing.Point(1520, 110);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 15);
             this.label1.TabIndex = 3;
@@ -107,7 +107,7 @@ namespace ray_tracing_cs
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(857, 20);
+            this.label3.Location = new System.Drawing.Point(1521, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 15);
             this.label3.TabIndex = 7;
@@ -125,18 +125,18 @@ namespace ray_tracing_cs
             "32",
             "64",
             "128"});
-            this.thredsControl.Location = new System.Drawing.Point(857, 38);
+            this.thredsControl.Location = new System.Drawing.Point(1521, 34);
             this.thredsControl.Name = "thredsControl";
             this.thredsControl.Size = new System.Drawing.Size(255, 23);
             this.thredsControl.TabIndex = 6;
-            this.thredsControl.SelectedItem = "8";
+this.thredsControl.SelectedItem = "8";
 
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(856, 166);
+            this.label4.Location = new System.Drawing.Point(1520, 162);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 15);
             this.label4.TabIndex = 8;
@@ -147,7 +147,7 @@ namespace ray_tracing_cs
             this.smallBallControl.AutoSize = true;
             this.smallBallControl.Checked = true;
             this.smallBallControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.smallBallControl.Location = new System.Drawing.Point(856, 184);
+            this.smallBallControl.Location = new System.Drawing.Point(1520, 180);
             this.smallBallControl.Name = "smallBallControl";
             this.smallBallControl.Size = new System.Drawing.Size(77, 19);
             this.smallBallControl.TabIndex = 9;
@@ -159,7 +159,7 @@ namespace ray_tracing_cs
             this.bigBallControl.AutoSize = true;
             this.bigBallControl.Checked = true;
             this.bigBallControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.bigBallControl.Location = new System.Drawing.Point(856, 209);
+            this.bigBallControl.Location = new System.Drawing.Point(1520, 205);
             this.bigBallControl.Name = "bigBallControl";
             this.bigBallControl.Size = new System.Drawing.Size(77, 19);
             this.bigBallControl.TabIndex = 10;
@@ -171,7 +171,7 @@ namespace ray_tracing_cs
             this.groundControl.AutoSize = true;
             this.groundControl.Checked = true;
             this.groundControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.groundControl.Location = new System.Drawing.Point(856, 234);
+            this.groundControl.Location = new System.Drawing.Point(1520, 230);
             this.groundControl.Name = "groundControl";
             this.groundControl.Size = new System.Drawing.Size(124, 19);
             this.groundControl.TabIndex = 11;
@@ -183,7 +183,7 @@ namespace ray_tracing_cs
             this.redLightControl.AutoSize = true;
             this.redLightControl.Checked = true;
             this.redLightControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.redLightControl.Location = new System.Drawing.Point(857, 292);
+            this.redLightControl.Location = new System.Drawing.Point(1521, 288);
             this.redLightControl.Name = "redLightControl";
             this.redLightControl.Size = new System.Drawing.Size(78, 19);
             this.redLightControl.TabIndex = 12;
@@ -195,21 +195,21 @@ namespace ray_tracing_cs
             this.blueLightControl.AutoSize = true;
             this.blueLightControl.Checked = true;
             this.blueLightControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.blueLightControl.Location = new System.Drawing.Point(857, 317);
+            this.blueLightControl.Location = new System.Drawing.Point(1521, 313);
             this.blueLightControl.Name = "blueLightControl";
             this.blueLightControl.Size = new System.Drawing.Size(80, 19);
             this.blueLightControl.TabIndex = 13;
             this.blueLightControl.Text = "Niebieskie";
             this.blueLightControl.UseVisualStyleBackColor = true;
             // 
-            // blue2LightControl
+            // grayLightControl
             // 
             this.grayLightControl.AutoSize = true;
             this.grayLightControl.Checked = true;
             this.grayLightControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.grayLightControl.Location = new System.Drawing.Point(856, 342);
+            this.grayLightControl.Location = new System.Drawing.Point(1520, 338);
             this.grayLightControl.Name = "grayLightControl";
-            this.grayLightControl.Size = new System.Drawing.Size(106, 19);
+            this.grayLightControl.Size = new System.Drawing.Size(53, 19);
             this.grayLightControl.TabIndex = 14;
             this.grayLightControl.Text = "Szare";
             this.grayLightControl.UseVisualStyleBackColor = true;
@@ -219,7 +219,7 @@ namespace ray_tracing_cs
             this.greenLightControl.AutoSize = true;
             this.greenLightControl.Checked = true;
             this.greenLightControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.greenLightControl.Location = new System.Drawing.Point(857, 367);
+            this.greenLightControl.Location = new System.Drawing.Point(1521, 363);
             this.greenLightControl.Name = "greenLightControl";
             this.greenLightControl.Size = new System.Drawing.Size(65, 19);
             this.greenLightControl.TabIndex = 15;
@@ -230,7 +230,7 @@ namespace ray_tracing_cs
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(853, 274);
+            this.label5.Location = new System.Drawing.Point(1517, 270);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 15);
             this.label5.TabIndex = 16;
@@ -240,7 +240,7 @@ namespace ray_tracing_cs
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(857, 494);
+            this.label6.Location = new System.Drawing.Point(1521, 490);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(143, 15);
             this.label6.TabIndex = 17;
@@ -249,7 +249,7 @@ namespace ray_tracing_cs
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(1006, 494);
+            this.timeLabel.Location = new System.Drawing.Point(1670, 490);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(34, 15);
             this.timeLabel.TabIndex = 18;
@@ -259,7 +259,7 @@ namespace ray_tracing_cs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1123, 761);
+            this.ClientSize = new System.Drawing.Size(1784, 961);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
