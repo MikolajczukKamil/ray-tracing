@@ -13,19 +13,10 @@ namespace ray_tracer
 
         private readonly Scene scene;
         private readonly int maxDepth;
-        private int screenWidth;
-        private int screenHeight;
 
-        public RayTracer(
-            Scene scene,
-            int screenWidth,
-            int screenHeight,
-            int maxDepth = 10
-          )
+        public RayTracer(Scene scene, int maxDepth = 10)
         {
             this.scene = scene;
-            this.screenWidth = screenWidth;
-            this.screenHeight = screenHeight;
             this.maxDepth = maxDepth;
         }
 
@@ -120,9 +111,8 @@ namespace ray_tracer
             return color;
         }
 
-        public Bitmap render()
+        public void fullRender(Bitmap image, int screenWidth, int screenHeight)
         {
-            var image = new Bitmap(screenWidth, screenHeight);
             var camera = scene.camera;
 
             var up = camera.up.times(camera.zoom);
@@ -146,8 +136,6 @@ namespace ray_tracer
                     image.SetPixel(x, y, color.toDrawingColor());
                 }
             }
-
-            return image;
         }
     }
 }

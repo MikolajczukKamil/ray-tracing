@@ -38,15 +38,19 @@ namespace ray_tracing_cs
 
             var scene = getScene();
 
+            var rayTracer = new RayTracer(scene);
+
+            var image = new Bitmap(renderedImage.Width, renderedImage.Height);
+
             var t = new Thread(() =>
             {
-                var rayTracer = new RayTracer(scene, renderedImage.Width, renderedImage.Height);
-
-                renderedImage.Image = rayTracer.render();
+                rayTracer.fullRender(image, image.Width, image.Height);
             });
             
             t.Start();
             t.Join();
+            renderedImage.Image = image;
+
             stopwatch.Stop();
             timeLabel.Text = (stopwatch.ElapsedMilliseconds / 1000.0).ToString();
             started = false;
