@@ -2,12 +2,12 @@
 {
     public class Light
     {
-        public readonly Vector pos;
+        public readonly Vector position;
         public readonly RColor color;
 
         public Light(Vector pos, RColor color)
         {
-            this.pos = pos;
+            this.position = pos;
             this.color = color;
         }
     }

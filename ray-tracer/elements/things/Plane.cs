@@ -20,7 +20,7 @@ namespace ray_tracer.elements.things
 
         public Intersection intersect(Ray ray)
         {
-            var denom = norm.dot(ray.dir);
+            var denom = norm.dot(ray.direction);
 
             if (denom > 0)
             {

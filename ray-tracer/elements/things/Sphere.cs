@@ -22,7 +22,7 @@ namespace ray_tracer.elements.things
         public Intersection intersect(Ray ray)
         {
             var eo = center.minus(ray.start);
-            var v = eo.dot(ray.dir);
+            var v = eo.dot(ray.direction);
             var dist = 0.0;
 
             if (v >= 0)
