@@ -86,7 +86,8 @@ namespace ray_tracing_cs
             Thing[] things = new List<Thing> {
                 groundControl.Checked    ? new Plane (new Vector( 0.0, 1.0,  0.00), 0.0, new Checkerboard()) : null,
                 bigBallControl.Checked   ? new Sphere(new Vector( 0.0, 1.0, -0.25), 1.0, new Shiny())        : null,
-                smallBallControl.Checked ? new Sphere(new Vector(-1.0, 0.5,  1.50), 0.5, new Matt())         : null
+                smallBallControl.Checked ? new Sphere(new Vector(-1.0, 0.5,  1.50), 0.5, new Matt())         : null,
+                hugeBallControl.Checked  ? new Sphere(new Vector(-9.0, 3.0,  -4.5), 3.0, new Shiny())        : null
             }.Where(x => x != null).ToArray();
 
             var red = RColor.from(125, 18, 18);
