@@ -15,13 +15,11 @@ namespace ray_tracer
         private readonly int maxDepth;
         private int screenWidth;
         private int screenHeight;
-        private double zoom;
 
         public RayTracer(
             Scene scene,
             int screenWidth,
             int screenHeight,
-            double zoom,
             int maxDepth = 10
           )
         {
@@ -29,7 +27,6 @@ namespace ray_tracer
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             this.maxDepth = maxDepth;
-            this.zoom = zoom;
         }
 
         private Intersection closestIntersection(Ray ray, Scene scene)
@@ -128,8 +125,8 @@ namespace ray_tracer
             var image = new Bitmap(screenWidth, screenHeight);
             var camera = scene.camera;
 
-            var up = camera.up.times(zoom);
-            var right = camera.right.times(zoom);
+            var up = camera.up.times(camera.zoom);
+            var right = camera.right.times(camera.zoom);
 
             var minAxis = Math.Min(screenHeight, screenWidth);
 

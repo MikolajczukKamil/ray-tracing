@@ -14,10 +14,13 @@ namespace ray_tracer.scene
         public readonly Vector right;
         public readonly Vector up;
 
-        public Camera(Vector position, Vector lookAt)
+        public readonly double zoom;
+
+        public Camera(Vector position, Vector lookAt, double zoom)
         {
             this.position = position;
             this.lookAt = lookAt;
+            this.zoom = zoom;
 
             forward = lookAt.minus(position).norm();
             right = forward.cross(down).norm();
