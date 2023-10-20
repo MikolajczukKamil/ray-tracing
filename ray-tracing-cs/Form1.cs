@@ -9,6 +9,7 @@ using ray_tracer.scene;
 using ray_tracer.elements.things;
 using ray_tracer.elements.surfaces;
 using System.Linq;
+using System.Diagnostics;
 
 namespace ray_tracing_cs
 {
@@ -26,6 +27,9 @@ namespace ray_tracing_cs
         {
             if (started) return;
             started = true;
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            timeLabel.Text = "...";
 
             renderedImage.Image = new Bitmap(renderedImage.Width, renderedImage.Height);
 
@@ -33,6 +37,8 @@ namespace ray_tracing_cs
 
             renderedImage.Image = rayTracer.render();
 
+            stopwatch.Stop();
+            timeLabel.Text = (stopwatch.ElapsedMilliseconds / 1000.0).ToString();
             started = false;
         }
 
@@ -54,13 +60,13 @@ namespace ray_tracing_cs
             var red   = RColor.from(125,  18,  18);
             var green = RColor.from( 18, 125,  18);
             var blue  = RColor.from( 18,  18, 125);
-            var blue2 = RColor.from( 54,  54,  89);
+            var gray  = RColor.from( 54,  54,  89);
           
             Light[] lights = new List<Light> {
                 redLightControl.Checked   ? new Light(new Vector(-2.0, 2.5,  0.0), red)   : null,
                 blueLightControl.Checked  ? new Light(new Vector( 1.5, 2.5,  1.5), blue)  : null,
                 greenLightControl.Checked ? new Light(new Vector( 1.5, 2.5, -1.5), green) : null,
-                blue2LightControl.Checked ? new Light(new Vector( 0.0, 3.5,  0.0), blue2) : null
+                grayLightControl.Checked  ? new Light(new Vector( 0.0, 3.5,  0.0), gray)  : null
             }.Where(x => x != null).ToArray();
 
             string zoomSelected = (string)zoomControll.SelectedItem;

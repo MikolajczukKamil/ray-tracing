@@ -42,7 +42,7 @@ namespace ray_tracing_cs
             this.groundControl = new System.Windows.Forms.CheckBox();
             this.redLightControl = new System.Windows.Forms.CheckBox();
             this.blueLightControl = new System.Windows.Forms.CheckBox();
-            this.blue2LightControl = new System.Windows.Forms.CheckBox();
+            this.grayLightControl = new System.Windows.Forms.CheckBox();
             this.greenLightControl = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -129,7 +129,7 @@ namespace ray_tracing_cs
             this.thredsControl.Name = "thredsControl";
             this.thredsControl.Size = new System.Drawing.Size(255, 23);
             this.thredsControl.TabIndex = 6;
-            this.zoomControll.SelectedItem = "8";
+            this.thredsControl.SelectedItem = "8";
 
             // 
             // label4
@@ -204,15 +204,15 @@ namespace ray_tracing_cs
             // 
             // blue2LightControl
             // 
-            this.blue2LightControl.AutoSize = true;
-            this.blue2LightControl.Checked = true;
-            this.blue2LightControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.blue2LightControl.Location = new System.Drawing.Point(856, 342);
-            this.blue2LightControl.Name = "blue2LightControl";
-            this.blue2LightControl.Size = new System.Drawing.Size(106, 19);
-            this.blue2LightControl.TabIndex = 14;
-            this.blue2LightControl.Text = "Inne Niebieskie";
-            this.blue2LightControl.UseVisualStyleBackColor = true;
+            this.grayLightControl.AutoSize = true;
+            this.grayLightControl.Checked = true;
+            this.grayLightControl.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.grayLightControl.Location = new System.Drawing.Point(856, 342);
+            this.grayLightControl.Name = "grayLightControl";
+            this.grayLightControl.Size = new System.Drawing.Size(106, 19);
+            this.grayLightControl.TabIndex = 14;
+            this.grayLightControl.Text = "Szare";
+            this.grayLightControl.UseVisualStyleBackColor = true;
             // 
             // greenLightControl
             // 
@@ -264,7 +264,7 @@ namespace ray_tracing_cs
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.greenLightControl);
-            this.Controls.Add(this.blue2LightControl);
+            this.Controls.Add(this.grayLightControl);
             this.Controls.Add(this.blueLightControl);
             this.Controls.Add(this.redLightControl);
             this.Controls.Add(this.groundControl);
@@ -301,7 +301,7 @@ namespace ray_tracing_cs
         private System.Windows.Forms.CheckBox groundControl;
         private System.Windows.Forms.CheckBox redLightControl;
         private System.Windows.Forms.CheckBox blueLightControl;
-        private System.Windows.Forms.CheckBox blue2LightControl;
+        private System.Windows.Forms.CheckBox grayLightControl;
         private System.Windows.Forms.CheckBox greenLightControl;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
