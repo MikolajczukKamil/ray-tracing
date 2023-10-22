@@ -47,8 +47,9 @@
     <Compile Include="elements\surfaces\Checkerboard.cs" />
     <Compile Include="elements\surfaces\Matt.cs" />
     <Compile Include="elements\surfaces\Shiny.cs" />
+    <Compile Include="elements\things\Triangle.cs" />
     <Compile Include="elements\things\Plane.cs" />
-    <Compile Include="elements\things\Cube.cs" />
+    <Compile Include="elements\things\Box.cs" />
     <Compile Include="elements\things\Sphere.cs" />
     <Compile Include="scene\Camera.cs" />
     <Compile Include="scene\Scene.cs" />

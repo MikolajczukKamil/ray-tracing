@@ -14,7 +14,7 @@ namespace ray_tracer
         private readonly Scene scene;
         private readonly int maxDepth;
 
-        public RayTracer(Scene scene, int maxDepth = 10)
+        public RayTracer(Scene scene, int maxDepth = 4)
         {
             this.scene = scene;
             this.maxDepth = maxDepth;
