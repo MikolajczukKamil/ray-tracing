@@ -31,29 +31,27 @@ namespace ray_tracing_cs
 
             timeLabel.Text = "...";
 
+            var scene = getScene();
+            var threads = getThreads();
+            var width = renderedImage.Width;
+            var height = renderedImage.Height;
+
             Task.Run(() =>
             {
-                var scene = getScene();
                 var rayTracer = new RayTracer(scene);
-                var width = renderedImage.Width;
-                var height = renderedImage.Height;
                 var image = new Bitmap(width, height);
 
                 renderedImage.Image = image;
 
-                var threads = getThreads();
-
-                var random = new Random();
-
                 Task.WhenAll(
-                    range(threads).Select((_, fragmentIndex) =>
+                    range(threads).Select((_, fragment) =>
                     Task.Run(() =>
                     {
-                        var fragment = rayTracer.fragmentRender(width, height, fragmentIndex, threads);
+                        var renderedFragment = rayTracer.fragmentRender(width, height, fragment, threads);
 
                         Invoke(new Action(delegate ()
                         {
-                            showFragment(image, fragment, fragmentIndex, threads);
+                            showFragment(image, renderedFragment, fragment, threads);
                             renderedImage.Refresh();
                         }));
                     })
@@ -71,17 +69,12 @@ namespace ray_tracing_cs
 
         private int getThreads()
         {
-            string threamsValue = null;
-
-            Invoke(new Action(delegate ()
-            {
-                threamsValue = (string)thredsControl.SelectedItem;
-            }));
+            string threamsValue = (string)thredsControl.SelectedItem;
 
             return threamsValue != null && threamsValue.Length > 0 ? Int32.Parse(threamsValue) : 8;
         }
 
-        Scene getScene()
+        private Scene getScene()
         {
             Thing[] things = new List<Thing> {
                 groundControl.Checked    ? new Plane (new Vector( 0.0, 1.0,  0.00), 0.0, new Checkerboard()) : null,
@@ -102,12 +95,7 @@ namespace ray_tracing_cs
                 grayLightControl.Checked  ? new Light(new Vector( 0.0, 3.5,  0.0), gray)  : null
             }.Where(x => x != null).ToArray();
 
-            string zoomSelected = null;
-
-            Invoke(new Action(delegate ()
-            {
-                zoomSelected = (string)zoomControll.SelectedItem;
-            }));
+            string zoomSelected = (string)zoomControll.SelectedItem;
 
             double zoom = zoomSelected != null && zoomSelected.Length > 0 ? Double.Parse(zoomSelected) : 1.0;
 
@@ -116,15 +104,15 @@ namespace ray_tracing_cs
             return new Scene(things, lights, camera);
         }
 
-        private void showFragment(Bitmap image, Bitmap fragment, int fragmentIndex, int threads)
+        private void showFragment(Bitmap image, Bitmap fragmentImage, int fragment, int fragments)
         {
             using (Graphics g = Graphics.FromImage(image))
             {
-                g.DrawImage(fragment, 0, fragmentIndex * (image.Height / threads));
+                g.DrawImage(fragmentImage, 0, fragment * (image.Height / fragments));
             }
         }
 
-        private object[] range(int max)
+        private static object[] range(int max)
         {
             return new object[max];
         }

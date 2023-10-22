@@ -9,7 +9,6 @@ namespace ray_tracer.elements.things
         public Surface surface { get; set; }
 
         public readonly Vector center;
-        public readonly double offset;
         public readonly double radius2;
 
         public Sphere(Vector center, double radius, Surface surface)

@@ -7,10 +7,10 @@ namespace ray_tracer.scene
         public readonly Vector start;
         public readonly Vector direction;
 
-        public Ray(Vector start, Vector dir)
+        public Ray(Vector start, Vector direction)
         {
             this.start = start;
-            this.direction = dir;
+            this.direction = direction;
         }
     }
 }

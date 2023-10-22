@@ -17,6 +17,13 @@ namespace ray_tracer.common
             this.z = z;
         }
 
+        private double[] array;
+
+        public double this[int index]
+        {
+            get => asArray()[index];
+        }
+
         public Vector times(double k)
         {
             return new Vector(k * x, k * y, k * z);
@@ -54,6 +61,16 @@ namespace ray_tracer.common
                 z * other.x - x * other.z,
                 x * other.y - y * other.x
             );
+        }
+
+        public double[] asArray()
+        {
+            if (array == null)
+            {
+                array = new double[] { x, y, z };
+            }
+
+            return array;
         }
     }
 }
