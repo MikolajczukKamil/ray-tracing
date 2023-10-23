@@ -7,7 +7,7 @@ namespace ray_tracer.elements.surfaces
 {
     public class Shiny : Surface
     {
-        public double roughness => 250.0;
+        public double roughness => 100.0;
 
         public RColor diffuse(Vector pos)
         {

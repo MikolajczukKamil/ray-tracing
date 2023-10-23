@@ -4,12 +4,12 @@ namespace ray_tracer.scene
 {
     public class Ray
     {
-        public readonly Vector start;
+        public readonly Vector origin;
         public readonly Vector direction;
 
-        public Ray(Vector start, Vector direction)
+        public Ray(Vector origin, Vector direction)
         {
-            this.start = start;
+            this.origin = origin;
             this.direction = direction;
         }
     }

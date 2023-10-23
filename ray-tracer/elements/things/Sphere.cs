@@ -20,9 +20,8 @@ namespace ray_tracer.elements.things
 
         public Intersection intersect(Ray ray)
         {
-            var eo = center.minus(ray.start);
+            var eo = center.minus(ray.origin);
             var v = eo.dot(ray.direction);
-            var dist = 0.0;
 
             if (v >= 0)
             {
@@ -30,21 +29,16 @@ namespace ray_tracer.elements.things
 
                 if (disc >= 0)
                 {
-                    dist = v - Math.Sqrt(disc);
+                    var dist = v - Math.Sqrt(disc);
+                    if (dist == 0.0) return null;
+
+                    var p = ray.origin.plus(ray.direction.times(dist));
+
+                    return new Intersection(this, ray, p.minus(center).norm(), dist);
                 }
             }
 
-            if (dist == 0.0)
-            {
-                return null;
-            }
-
-            return new Intersection(this, ray, dist);
-        }
-
-        public Vector normal(Vector pos)
-        {
-            return pos.minus(center).norm();
+            return null;
         }
     }
 }

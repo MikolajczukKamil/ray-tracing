@@ -69,7 +69,7 @@ namespace ray_tracing_cs
 
         private int getThreads()
         {
-            string threamsValue = (string)thredsControl.SelectedItem;
+            var threamsValue = (string)thredsControl.SelectedItem;
 
             return threamsValue != null && threamsValue.Length > 0 ? Int32.Parse(threamsValue) : 8;
         }
@@ -79,15 +79,8 @@ namespace ray_tracing_cs
             Thing[] things = new List<Thing> {
                 groundControl.Checked    ? new Plane (new Vector( 0.0, 1.0,  0.00), 0.0, new Checkerboard()) : null,
                 bigBallControl.Checked   ? new Sphere(new Vector( 0.0, 1.0, -0.25), 1.0, new Shiny())        : null,
-                //smallBallControl.Checked ? new Sphere(new Vector(-1.0, 0.5,  1.50), 0.5, new Matt())         : null,
-                //hugeBallControl.Checked  ? new Sphere(new Vector(-9.0, 3.0,  -4.5), 3.0, new Shiny())        : null,
-                new Box(
-                    new Vector(-1.0, 0.5,  1.50).plus(new Vector(-1.0, 0.5,  1.50).minus(new Vector( 0.0, 1.0, -0.25))),
-                new Vector(1, .8, .6),
-                new Shiny()
-                ),
-                groundControl.Checked  ? new Triangle(new Vector( 0.0, 0, -0.25), new Vector(-1.0, 0,  1.50),new Vector(-9.0, 0,  -4.5) , new Shiny())        : null,
-
+                smallBallControl.Checked ? new Sphere(new Vector(-1.0, 0.5,  1.50), 0.5, new Matt())         : null,
+                hugeBallControl.Checked  ? new Sphere(new Vector(-9.0, 3.0,  -4.5), 3.0, new Shiny())        : null,
             }.Where(x => x != null).ToArray();
 
             var red = RColor.from(125, 18, 18);
@@ -102,10 +95,8 @@ namespace ray_tracing_cs
                 grayLightControl.Checked  ? new Light(new Vector( 0.0, 3.5,  0.0), gray)  : null
             }.Where(x => x != null).ToArray();
 
-            string zoomSelected = (string)zoomControll.SelectedItem;
-
-            double zoom = zoomSelected != null && zoomSelected.Length > 0 ? Double.Parse(zoomSelected) : 1.0;
-
+            var zoomSelected = (string)zoomControll.SelectedItem;
+            var zoom = zoomSelected != null && zoomSelected.Length > 0 ? double.Parse(zoomSelected) : 1.0;
             var camera = new Camera(new Vector(3.0, 2.0, 5.0), new Vector(-1.0, 0.5, 0.0), zoom);
 
             return new Scene(things, lights, camera);
@@ -114,9 +105,7 @@ namespace ray_tracing_cs
         private void showFragment(Bitmap image, Bitmap fragmentImage, int fragment, int fragments)
         {
             using (Graphics g = Graphics.FromImage(image))
-            {
                 g.DrawImage(fragmentImage, 0, fragment * (image.Height / fragments));
-            }
         }
 
         private static object[] range(int max)

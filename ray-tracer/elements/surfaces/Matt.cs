@@ -7,7 +7,7 @@ namespace ray_tracer.elements.surfaces
 {
     public class Matt : Surface
     {
-        public double roughness => 50.0;
+        public double roughness => 10.0;
 
         public RColor diffuse(Vector pos)
         {

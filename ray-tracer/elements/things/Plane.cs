@@ -1,6 +1,5 @@
 ﻿using ray_tracer.common;
 using ray_tracer.scene;
-using System;
 
 namespace ray_tracer.elements.things
 {
@@ -20,21 +19,13 @@ namespace ray_tracer.elements.things
 
         public Intersection intersect(Ray ray)
         {
-            var denom = norm.dot(ray.direction);
+            var normRayDirectionDot = norm.dot(ray.direction);
 
-            if (denom > 0)
-            {
-                return null;
-            }
+            if (normRayDirectionDot > double.Epsilon) return null;
 
-            var dist = (norm.dot(ray.start) + offset) / (-denom);
+            var dist = -(norm.dot(ray.origin) + offset) / normRayDirectionDot;
 
-            return new Intersection(this, ray, dist);
-        }
-
-        public Vector normal(Vector pos)
-        {
-            return norm;
+            return new Intersection(this, ray, norm, dist);
         }
     }
 }

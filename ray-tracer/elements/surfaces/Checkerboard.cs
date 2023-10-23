@@ -11,20 +11,14 @@ namespace ray_tracer.elements.surfaces
 
         public RColor diffuse(Vector pos)
         {
-            if (isBlackField(pos))
-            {
-                return RColor.white;
-            }
+            if (isBlackField(pos)) return RColor.white;
 
             return RColor.black;
         }
 
         public double reflect(Vector pos)
         {
-            if (isBlackField(pos))
-            {
-                return 0.1;
-            }
+            if (isBlackField(pos)) return 0.1;
 
             return 0.7;
         }

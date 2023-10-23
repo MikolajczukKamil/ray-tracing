@@ -14,7 +14,7 @@ namespace ray_tracer
         private readonly Scene scene;
         private readonly int maxDepth;
 
-        public RayTracer(Scene scene, int maxDepth = 4)
+        public RayTracer(Scene scene, int maxDepth = 10)
         {
             this.scene = scene;
             this.maxDepth = maxDepth;
@@ -84,14 +84,13 @@ namespace ray_tracer
         private RColor shade(Intersection isect, Scene scene, int depth)
         {
             var direction = isect.ray.direction;
-            var position = direction.times(isect.dist).plus(isect.ray.start);
-            var normal = isect.thing.normal(position);
+            var position = direction.times(isect.dist).plus(isect.ray.origin);
             var reflectDir = direction.minus(
-                normal.times(2 * normal.dot(direction))
+                isect.norm.times(2 * isect.norm.dot(direction))
              );
 
             var naturalColor = background.plus(
-                getNaturalColor(isect.thing, position, normal, reflectDir, scene)
+                getNaturalColor(isect.thing, position, isect.norm, reflectDir, scene)
              );
 
             var reflectedColor = (depth >= maxDepth) ?

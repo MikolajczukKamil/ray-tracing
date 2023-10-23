@@ -65,10 +65,7 @@ namespace ray_tracer.common
 
         public double[] asArray()
         {
-            if (array == null)
-            {
-                array = new double[] { x, y, z };
-            }
+            if (array == null) array = new double[] { x, y, z };
 
             return array;
         }
