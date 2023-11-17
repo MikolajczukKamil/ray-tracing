@@ -74,15 +74,10 @@ namespace ray_tracer
 
         private RColor traceRay(Ray ray, Scene scene, int depth)
         {
-            var closest = closestIntersection(ray, scene);
+            var isect = closestIntersection(ray, scene);
 
-            if (closest == null) return background;
+            if (isect == null) return background;
 
-            return shade(closest, scene, depth);
-        }
-
-        private RColor shade(Intersection isect, Scene scene, int depth)
-        {
             var direction = isect.ray.direction;
             var position = direction.times(isect.dist).plus(isect.ray.origin);
             var reflectDir = direction.minus(
@@ -113,21 +108,21 @@ namespace ray_tracer
 
             foreach (var light in scene.lights)
             {
-                var ldis = light.position.minus(position);
-                var livec = ldis.norm();
-                var closest = closestIntersection(new Ray(position, livec), scene);
+                var toLightDirection = light.position.minus(position);
+                var toLightDirectionNorm = toLightDirection.norm();
+                var closest = closestIntersection(new Ray(position, toLightDirectionNorm), scene);
 
-                var isInShadow = closest == null ? false : (closest.dist <= ldis.mag());
+                var isInShadow = closest == null ? false : (closest.dist <= toLightDirection.mag());
 
                 if (!isInShadow)
                 {
-                    var illum = livec.dot(norm);
-                    var lcolor = illum > 0 ? light.color.scale(illum) : defaultColor;
+                    var illum = toLightDirectionNorm.dot(norm);
+                    var lColor = illum > 0 ? light.color.scale(illum) : defaultColor;
 
-                    var specular = livec.dot(reflectDir.norm());
-                    var scolor = specular > 0 ? light.color.scale(Math.Pow(specular, thing.surface.roughness)) : defaultColor;
+                    var specular = toLightDirectionNorm.dot(reflectDir.norm());
+                    var sColor = specular > 0 ? light.color.scale(Math.Pow(specular, thing.surface.roughness)) : defaultColor;
 
-                    color = color.plus(lcolor.times(thingDiffuse).plus(scolor.times(thingSpecular)));
+                    color = color.plus(lColor.times(thingDiffuse).plus(sColor.times(thingSpecular)));
                 }
             }
 

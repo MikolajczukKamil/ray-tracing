@@ -30,7 +30,7 @@ namespace ray_tracer.elements.things
                 if (disc >= 0)
                 {
                     var dist = v - Math.Sqrt(disc);
-                    if (dist == 0.0) return null;
+                    if (dist <= double.Epsilon) return null;
 
                     var p = ray.origin.plus(ray.direction.times(dist));
 
