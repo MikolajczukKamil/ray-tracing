@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34031.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ray-tracing-cs", "ray-tracing-cs\ray-tracing-cs.csproj", "{F9DFFED9-7FAB-4CBC-BB52-49D60D551C37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ray-tracer", "ray-tracer\ray-tracer.csproj", "{7A76C648-A6A3-4CAB-AA0A-20A90DDEAC10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9DFFED9-7FAB-4CBC-BB52-49D60D551C37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9DFFED9-7FAB-4CBC-BB52-49D60D551C37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9DFFED9-7FAB-4CBC-BB52-49D60D551C37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9DFFED9-7FAB-4CBC-BB52-49D60D551C37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A76C648-A6A3-4CAB-AA0A-20A90DDEAC10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A76C648-A6A3-4CAB-AA0A-20A90DDEAC10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A76C648-A6A3-4CAB-AA0A-20A90DDEAC10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A76C648-A6A3-4CAB-AA0A-20A90DDEAC10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1966CDDB-AD40-4D57-93A4-31F362E8C7B8}
+	EndGlobalSection
+EndGlobal
