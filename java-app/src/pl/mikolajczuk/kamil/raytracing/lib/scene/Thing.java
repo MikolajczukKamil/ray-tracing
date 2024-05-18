@@ -1,4 +1,4 @@
-﻿package pl.mikolajczuk.kamil.raytracing.lib.scene;
+package pl.mikolajczuk.kamil.raytracing.lib.scene;
 
 import java.util.Optional;
 

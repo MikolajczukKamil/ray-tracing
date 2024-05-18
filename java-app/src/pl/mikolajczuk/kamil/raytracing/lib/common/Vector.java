@@ -1,4 +1,4 @@
-﻿package pl.mikolajczuk.kamil.raytracing.lib.common;
+package pl.mikolajczuk.kamil.raytracing.lib.common;
 
 public class Vector
     {

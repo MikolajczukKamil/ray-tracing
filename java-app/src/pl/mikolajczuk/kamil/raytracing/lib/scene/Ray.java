@@ -1,4 +1,4 @@
-﻿package pl.mikolajczuk.kamil.raytracing.lib.scene;
+package pl.mikolajczuk.kamil.raytracing.lib.scene;
 
 import pl.mikolajczuk.kamil.raytracing.lib.common.Vector;
 

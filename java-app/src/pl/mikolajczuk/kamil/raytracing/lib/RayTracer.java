@@ -1,4 +1,4 @@
-﻿package pl.mikolajczuk.kamil.raytracing.lib;
+package pl.mikolajczuk.kamil.raytracing.lib;
 
 import pl.mikolajczuk.kamil.raytracing.lib.common.*;
 import pl.mikolajczuk.kamil.raytracing.lib.scene.*;
@@ -17,6 +17,7 @@ public class RayTracer {
         this.maxDepth = 10;
     }
 
+    /*
     public Bitmap fragmentRender(int screenWidth, int screenHeight, int fragmentIndex, int fragments) {
         var image = new Bitmap(screenWidth, fragmentIndex == fragments - 1 ? screenHeight - fragmentIndex * (screenHeight / fragments) : screenHeight / fragments);
 
@@ -46,6 +47,7 @@ public class RayTracer {
 
         return image;
     }
+     */
 
     private Optional<Intersection> closestIntersection(Ray ray, Scene scene) {
         double closest = Double.POSITIVE_INFINITY;

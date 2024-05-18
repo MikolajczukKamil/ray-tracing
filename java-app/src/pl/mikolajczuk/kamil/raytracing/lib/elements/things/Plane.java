@@ -1,4 +1,4 @@
-﻿package pl.mikolajczuk.kamil.raytracing.lib.elements.things;
+package pl.mikolajczuk.kamil.raytracing.lib.elements.things;
 
 import pl.mikolajczuk.kamil.raytracing.lib.common.*;
 import pl.mikolajczuk.kamil.raytracing.lib.scene.*;
