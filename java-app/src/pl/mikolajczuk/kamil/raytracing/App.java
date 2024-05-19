@@ -15,20 +15,20 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class App extends JFrame {
-    private JComboBox thredsControl;
-    private JComboBox zoomControll;
-    private JCheckBox hugeBallControl;
-    private JCheckBox smallBallControl;
-    private JCheckBox bigBallControl;
-    private JCheckBox groundControl;
-    private JCheckBox redLightControl;
-    private JCheckBox blueLightControl;
-    private JCheckBox grayLightControl;
-    private JCheckBox greenLightControl;
-    private JLabel timeLabel;
-    private JButton startButton;
-    private JPanel renderedImage;
-    private JPanel allContainer;
+    public JComboBox thredsControl;
+    public JComboBox zoomControll;
+    public JCheckBox hugeBallControl;
+    public JCheckBox smallBallControl;
+    public JCheckBox bigBallControl;
+    public JCheckBox groundControl;
+    public JCheckBox redLightControl;
+    public JCheckBox blueLightControl;
+    public JCheckBox grayLightControl;
+    public JCheckBox greenLightControl;
+    public JLabel timeLabel;
+    public JButton startButton;
+    public JPanel renderedImage;
+    public JPanel allContainer;
 
     public App() {
         super();
@@ -54,61 +54,29 @@ public class App extends JFrame {
         if (!startButton.isEnabled()) return;
         startButton.setEnabled(false);
 
-        BufferedImage image = new BufferedImage(renderedImage.getWidth(), renderedImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        Graphics g = image.getGraphics();
+        var startTime = System.currentTimeMillis();
+        timeLabel.setText("...");
 
-//        g.setPaintMode();
-        g.setColor(Color.blue);
-        g.fillRect(50, 50, 150, 500);
-        g.dispose();
+        var width = renderedImage.getWidth();
+        var height = renderedImage.getHeight();
 
-        JLabel picLabel = new JLabel(new ImageIcon(image));
+        var image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+        var picLabel = new JLabel(new ImageIcon(image));
         picLabel.setSize(renderedImage.getSize());
 
         renderedImage.removeAll();
         renderedImage.add(picLabel);
-        renderedImage.repaint();
+        repaint();
 
-        //
+        var runner = new TracerRunner(getScene(), getThreads(), image);
+        runner.startTime = startTime;
+        runner.app = this;
+        runner.width = width;
+        runner.height = height;
 
-        var startTime = System.currentTimeMillis();
-
-        timeLabel.setText("...");
-
-        var scene = getScene();
-        var threads = getThreads();
-        var width = renderedImage.getWidth();
-        var height = renderedImage.getHeight();
-
-        Task.Run(() -> {
-            var rayTracer = new RayTracer(scene);
-            var image = new Bitmap(width, height);
-
-            renderedImage.Image = image;
-
-            Task.WhenAll(
-                    range(threads).Select((_, fragment) = >
-                    Task.Run(() = >
-                    {
-                            var renderedFragment = rayTracer.fragmentRender(width, height, fragment, threads);
-
-            Invoke(new Action(() -> {
-                showFragment(image, renderedFragment, fragment, threads);
-                renderedImage.Refresh();
-            }));
-                    })
-                )).Wait();
-
-            end(startTime);
-        });
-    }
-
-    private void end(double startTime) {
-        var time = System.currentTimeMillis() - startTime;
-
-        timeLabel.setText(Double.toString(time / 1000.0));
-
-        startButton.setEnabled(true);
+        var runThread = new Thread(runner);
+        runThread.start();
     }
 
     private int getThreads() {
@@ -138,7 +106,7 @@ public class App extends JFrame {
         }).filter(Objects::nonNull).toArray(Light[]::new);
 
         var zoomSelected = (String) zoomControll.getSelectedItem();
-        var zoom = zoomSelected != null && zoomSelected.length() > 0 ? Double.parseDouble(zoomSelected) : 1.0;
+        var zoom = zoomSelected != null && zoomSelected.length() > 0 ? Double.parseDouble(zoomSelected.replace(",", ".")) : 1.0;
         var camera = new Camera(new Vector(3.0, 2.0, 5.0), new Vector(-1.0, 0.5, 0.0), zoom);
 
         return new Scene(things, lights, camera);
@@ -151,9 +119,5 @@ public class App extends JFrame {
 
     private static Object[] range(int max) {
         return new Object[max];
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }

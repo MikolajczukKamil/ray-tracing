@@ -3,6 +3,7 @@ package pl.mikolajczuk.kamil.raytracing.lib;
 import pl.mikolajczuk.kamil.raytracing.lib.common.*;
 import pl.mikolajczuk.kamil.raytracing.lib.scene.*;
 
+import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 public class RayTracer {
@@ -17,13 +18,13 @@ public class RayTracer {
         this.maxDepth = 10;
     }
 
-        /*
-    public Bitmap fragmentRender(int screenWidth, int screenHeight, int fragmentIndex, int fragments) {
-        var image = new Bitmap(
+    public BufferedImage fragmentRender(int screenWidth, int screenHeight, int fragmentIndex, int fragments) {
+        var image = new BufferedImage(
                 screenWidth,
                 fragmentIndex == fragments - 1 ?
                         screenHeight - fragmentIndex * (screenHeight / fragments) :
-                        screenHeight / fragments
+                        screenHeight / fragments,
+                BufferedImage.TYPE_INT_ARGB
         );
 
         var camera = scene.camera;
@@ -35,7 +36,9 @@ public class RayTracer {
 
         var start = fragmentIndex * (screenHeight / fragments);
 
-        for (var y = 0; y < image.Height; y++) {
+        var g = image.getGraphics();
+
+        for (var y = 0; y < image.getHeight(); y++) {
             double recenterY = ((start + y) - (minAxis / 2.0)) / 2.0 / minAxis;
             var pointY = camera.forward.plus(up.times(-recenterY));
 
@@ -46,13 +49,15 @@ public class RayTracer {
                 var ray = new Ray(camera.position, point);
                 var color = traceRay(ray, scene, 0);
 
-                image.SetPixel(x, y, color.toDrawingColor());
+                g.setColor(color.toDrawingColor());
+                g.fillRect(x, y, 1, 1);
             }
         }
 
+        g.dispose();
+
         return image;
     }
-     */
 
     private Optional<Intersection> closestIntersection(Ray ray, Scene scene) {
         double closest = Double.POSITIVE_INFINITY;
