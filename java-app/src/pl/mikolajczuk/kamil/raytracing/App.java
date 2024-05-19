@@ -39,20 +39,6 @@ public class App extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-//        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-//        Graphics g = image.getGraphics();
-//
-////        g.setPaintMode();
-//        g.setColor(Color.blue);
-//        g.fillRect(50, 50, 150, 500);
-//        g.dispose();
-//
-//        var canvas = new RenderCanvas();
-//        canvas.setSize(renderedImage.getSize());
-//        renderedImage.add(canvas);
-//
-//        canvas.updateImage(image);
-
         App app = this;
         startButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -78,46 +64,43 @@ public class App extends JFrame {
 
         JLabel picLabel = new JLabel(new ImageIcon(image));
         picLabel.setSize(renderedImage.getSize());
+
+        renderedImage.removeAll();
         renderedImage.add(picLabel);
         renderedImage.repaint();
 
-        startButton.setEnabled(true);
-        return;
+        //
 
+        var startTime = System.currentTimeMillis();
 
-//        if (!startButton.isEnabled()) return;
-//        startButton.setEnabled(false);
-//
-//        var startTime = System.currentTimeMillis();
-//
-//        timeLabel.setText("...");
-//
-//        var scene = getScene();
-//        var threads = getThreads();
-//        var width = renderedImage.getWidth();
-//        var height = renderedImage.getHeight();
+        timeLabel.setText("...");
 
-//        Task.Run(() -> {
-//            var rayTracer = new RayTracer(scene);
-//            var image = new Bitmap(width, height);
-//
-//            renderedImage.Image = image;
-//
-//            Task.WhenAll(
-//                    range(threads).Select((_, fragment) = >
-//                    Task.Run(() = >
-//                    {
-//                            var renderedFragment = rayTracer.fragmentRender(width, height, fragment, threads);
-//
-//            Invoke(new Action(() -> {
-//                showFragment(image, renderedFragment, fragment, threads);
-//                renderedImage.Refresh();
-//            }));
-//                    })
-//                )).Wait();
-//
-//            end(startTime);
-//        });
+        var scene = getScene();
+        var threads = getThreads();
+        var width = renderedImage.getWidth();
+        var height = renderedImage.getHeight();
+
+        Task.Run(() -> {
+            var rayTracer = new RayTracer(scene);
+            var image = new Bitmap(width, height);
+
+            renderedImage.Image = image;
+
+            Task.WhenAll(
+                    range(threads).Select((_, fragment) = >
+                    Task.Run(() = >
+                    {
+                            var renderedFragment = rayTracer.fragmentRender(width, height, fragment, threads);
+
+            Invoke(new Action(() -> {
+                showFragment(image, renderedFragment, fragment, threads);
+                renderedImage.Refresh();
+            }));
+                    })
+                )).Wait();
+
+            end(startTime);
+        });
     }
 
     private void end(double startTime) {
