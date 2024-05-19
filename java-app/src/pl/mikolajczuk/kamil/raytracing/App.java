@@ -65,6 +65,9 @@ public class App extends JFrame {
     }
 
     private void start() {
+        if (!startButton.isEnabled()) return;
+        startButton.setEnabled(false);
+
         BufferedImage image = new BufferedImage(renderedImage.getWidth(), renderedImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics g = image.getGraphics();
 
@@ -73,16 +76,12 @@ public class App extends JFrame {
         g.fillRect(50, 50, 150, 500);
         g.dispose();
 
-        var canvas = new RenderCanvas();
-        canvas.setSize(renderedImage.getSize());
+        JLabel picLabel = new JLabel(new ImageIcon(image));
+        picLabel.setSize(renderedImage.getSize());
+        renderedImage.add(picLabel);
+        renderedImage.repaint();
 
-        var c = new Canvas();
-        c.
-
-        renderedImage.add(canvas);
-
-        canvas.updateImage(image);
-
+        startButton.setEnabled(true);
         return;
 
 
