@@ -17,9 +17,14 @@ public class RayTracer {
         this.maxDepth = 10;
     }
 
-    /*
+        /*
     public Bitmap fragmentRender(int screenWidth, int screenHeight, int fragmentIndex, int fragments) {
-        var image = new Bitmap(screenWidth, fragmentIndex == fragments - 1 ? screenHeight - fragmentIndex * (screenHeight / fragments) : screenHeight / fragments);
+        var image = new Bitmap(
+                screenWidth,
+                fragmentIndex == fragments - 1 ?
+                        screenHeight - fragmentIndex * (screenHeight / fragments) :
+                        screenHeight / fragments
+        );
 
         var camera = scene.camera;
 
@@ -96,8 +101,7 @@ public class RayTracer {
         var thingDiffuse = thing.getSurface().diffuse(position);
         var thingSpecular = thing.getSurface().specular(position);
 
-        for(Light light : scene.lights)
-        {
+        for (Light light : scene.lights) {
             var toLightDirection = light.position.minus(position);
             var toLightDirectionNorm = toLightDirection.norm();
             var closest = closestIntersection(new Ray(position, toLightDirectionNorm), scene);
