@@ -15,3 +15,9 @@ Obiekty mają mieć różne powierzchnie zgodne z modelem oświetlenia Phonga
 
 Bibliografia:
 - https://www.scratchapixel.com/
+
+# Wersja java
+
+To samo tylko napisane w javie
+
+![Program w wersji java](/assets/projekt-java.png "Okno aplikacji w wersji java")
