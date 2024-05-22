@@ -57,8 +57,8 @@ public class App extends JFrame {
         greenLightControl.setSelected(true);
         grayLightControl.setSelected(true);
 
-        zoomControll.setSelectedItem("1,0");
-        thredsControl.setSelectedItem("4");
+        zoomControll.setSelectedItem("1,5");
+        thredsControl.setSelectedItem("8");
 
         setVisible(true);
     }
@@ -73,16 +73,11 @@ public class App extends JFrame {
         var width = renderedImage.getWidth();
         var height = renderedImage.getHeight();
 
-        var image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        var refresher = new ImageRefresh(renderedImage, this);
 
-        var picLabel = new JLabel(new ImageIcon(image));
-        picLabel.setSize(renderedImage.getSize());
+        refresher.refresh();
 
-        renderedImage.removeAll();
-        renderedImage.add(picLabel);
-        repaint();
-
-        var runner = new TracerRunner(getScene(), getThreads(), image);
+        var runner = new TracerRunner(getScene(), getThreads(), refresher);
         runner.startTime = startTime;
         runner.app = this;
         runner.width = width;

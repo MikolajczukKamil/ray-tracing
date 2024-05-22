@@ -4,12 +4,13 @@ import pl.mikolajczuk.kamil.raytracing.lib.RayTracer;
 import pl.mikolajczuk.kamil.raytracing.lib.scene.Scene;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 public class TracerRunner implements Runnable {
     private final int threads;
 
-    private final BufferedImage image;
+    private final ImageRefresh refresh;
     private final RayTracer rayTracer;
 
     public App app;
@@ -18,22 +19,22 @@ public class TracerRunner implements Runnable {
     public int width;
     public int height;
 
-    public TracerRunner(Scene scene, int Threads, BufferedImage Image) {
+    public TracerRunner(Scene scene, int Threads, ImageRefresh Refresh) {
         threads = Threads;
-        image = Image;
+        refresh = Refresh;
 
         rayTracer = new RayTracer(scene);
     }
 
     @Override
     public void run() {
-        ThreadRunner[] runners = IntStream.range(0, threads)
-                .mapToObj((fragment) -> {
-                    var run = new ThreadRunner(rayTracer, fragment, threads, width, height, image);
-                    run.thread.start();
+        var runners = new ArrayList<ThreadRunner>();
 
-                    return run;
-                }).toArray(ThreadRunner[]::new);
+        for (int fragment = 0; fragment < threads; fragment++) {
+            var run = new ThreadRunner(rayTracer, fragment, threads, width, height, refresh);
+            run.thread.start();
+            runners.add(run);
+        }
 
         for (ThreadRunner run : runners) {
             try {
