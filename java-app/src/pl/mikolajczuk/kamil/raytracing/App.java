@@ -112,11 +112,6 @@ public class App extends JFrame {
         return new Scene(things, lights, camera);
     }
 
-//    private void showFragment(Graphics image, Bitmap fragmentImage, int fragment, int fragments) {
-//        using(Graphics g = Graphics.FromImage(image))
-//        g.DrawImage(fragmentImage, 0, fragment * (image.Height / fragments));
-//    }
-
     private static Object[] range(int max) {
         return new Object[max];
     }

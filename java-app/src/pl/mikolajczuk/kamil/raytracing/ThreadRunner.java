@@ -5,7 +5,7 @@ import pl.mikolajczuk.kamil.raytracing.lib.RayTracer;
 import java.awt.image.BufferedImage;
 
 public class ThreadRunner implements Runnable {
-    public BufferedImage renderedFragment;
+    public BufferedImage fullImage;
     public final RayTracer rayTracer;
 
     public int fragment;
@@ -16,16 +16,25 @@ public class ThreadRunner implements Runnable {
 
     public Thread thread = new Thread(this);
 
-    public ThreadRunner(RayTracer RayTracer, int Fragment, int Threads, int Width, int Height) {
+    private static final Object joinImageLock = new Object();
+
+    public ThreadRunner(RayTracer RayTracer, int Fragment, int Threads, int Width, int Height, BufferedImage FullImage) {
         rayTracer = RayTracer;
         fragment = Fragment;
         threads = Threads;
         width = Width;
         height = Height;
+        fullImage = FullImage;
     }
 
     @Override
     public void run() {
-        renderedFragment = rayTracer.fragmentRender(width, height, fragment, threads);
+        var renderedFragment = rayTracer.fragmentRender(width, height, fragment, threads);
+
+        synchronized (joinImageLock) {
+            var g = fullImage.getGraphics();
+            g.drawImage(renderedFragment,  0, fragment * (renderedFragment.getHeight() / threads), null);
+            g.dispose();
+        }
     }
 }
