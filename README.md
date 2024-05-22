@@ -20,4 +20,6 @@ Bibliografia:
 
 To samo tylko napisane w javie
 
+Uruchomienie: `java -jar ./ray-tracing/app-java/java-app.jar`
+
 ![Program w wersji java](/assets/projekt-java.png "Okno aplikacji w wersji java")
