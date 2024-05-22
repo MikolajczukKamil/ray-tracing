@@ -47,6 +47,19 @@ public class App extends JFrame {
             }
         });
 
+        groundControl.setSelected(true);
+        bigBallControl.setSelected(true);
+        smallBallControl.setSelected(true);
+        hugeBallControl.setSelected(true);
+
+        redLightControl.setSelected(true);
+        blueLightControl.setSelected(true);
+        greenLightControl.setSelected(true);
+        grayLightControl.setSelected(true);
+
+        zoomControll.setSelectedItem("1,0");
+        thredsControl.setSelectedItem("4");
+
         setVisible(true);
     }
 

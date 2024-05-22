@@ -33,7 +33,7 @@ public class ThreadRunner implements Runnable {
 
         synchronized (joinImageLock) {
             var g = fullImage.getGraphics();
-            g.drawImage(renderedFragment,  0, fragment * (renderedFragment.getHeight() / threads), null);
+            g.drawImage(renderedFragment,  0, fragment * (fullImage.getHeight() / threads), null);
             g.dispose();
         }
     }

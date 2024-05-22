@@ -44,4 +44,9 @@ public class RColor {
     public static RColor from(int r, int g, int b) {
         return new RColor(norm(r / 255.0), norm(g / 255.0), norm(b / 255.0));
     }
+
+    @Override
+    public String toString() {
+        return "[" + r + ", " + g + ", " + g + "]";
+    }
 }
